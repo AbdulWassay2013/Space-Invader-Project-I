@@ -57,7 +57,7 @@ def  fire_bullet(x,y):
     global bullet_state
     bullet_state = "fire"
     screen.blit(bullet_img,(x + 16 , y + 10))
-def iscollission(enemy_X,enemy_Y,bullet_Y,bullet_X):
+def iscollission(enemy_X,enemy_Y,bullet_X,bullet_Y):
     distance = math.sqrt((enemy_X - bullet_X) ** 2 + (enemy_Y - bullet_Y)** 2)
     return distance < COLLISION_DISTANCE
 running = True
@@ -73,11 +73,11 @@ while running:
             if event.key == pygame.K_RIGHT:
                 player_X_change = 5
             if event.key == pygame.K_SPACE and bullet_state == "ready":
-                bullet_x = player_X
-                fire_bullet(bullet_x,bullet_Y)
+                bullet_X = player_X
+                fire_bullet(bullet_X,bullet_Y)
         if event.type == pygame.KEYUP and event.key in [pygame.K_LEFT,pygame.K_RIGHT]:
             player_X_change = 0
-        player_X + player_X_change
+        player_X += player_X_change
         player_X = max(0,min(player_X,SCREEN_WIDTH - 64))
         for i in range(num_of_enemy):
             if enemy_Y[i]>340:
